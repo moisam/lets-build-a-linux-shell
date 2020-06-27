@@ -49,6 +49,9 @@ struct symtab_s
     struct symtab_entry_s *first, *last;
 };
 
+/* values for the flags field of struct symtab_entry_s */
+#define FLAG_EXPORT     (1 << 0)    /* export entry to forked commands */
+
 /* the symbol table stack structure */
 #define MAX_SYMTAB	256  /* maximum allowed symbol tables in the stack */
 
