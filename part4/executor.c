@@ -175,11 +175,15 @@ int do_simple_command(struct node_s *node)
     }
     argv[argc] = NULL;
 
-    if(strcmp(argv[0], "dump") == 0)
+    int i = 0;
+    for( ; i < builtins_count; i++)
     {
-        dump(argc, argv);
-        free_argv(argc, argv);
-        return 1;
+        if(strcmp(argv[0], builtins[i].name) == 0)
+        {
+            builtins[i].func(argc, argv);
+            free_argv(argc, argv);
+            return 1;
+        }
     }
 
     pid_t child_pid = 0;
